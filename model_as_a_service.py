@@ -1,10 +1,14 @@
 import json
-from os import environ
+import os
  
 import requests
+from dotenv import load_dotenv
  
-CLIENT_ID = environ.get("CLIENT_ID")
-CLIENT_SECRET = environ.get("CLIENT_SECRET")
+load_dotenv()
+ 
+ 
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
  
  
 # generating token for calling model
@@ -21,8 +25,9 @@ TOKEN = response.json()["token"]
 model_base_url = "https://daia.privatelink.azurewebsites.net/model-as-a-service"
 path = "/chat/completions"
 input_data = {
+    # "model": "gpt-5",
     "model": "gpt-5",
-    "messages": [{"role": "user", "content": "Hello, how are you?"}],
+    "messages": [{"role": "user", "content": "Tell me about Climate Change."}],
 }
 headers = {"Authorization": f"Bearer {TOKEN}"}
 response = requests.post(
