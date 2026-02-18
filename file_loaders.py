@@ -5,7 +5,7 @@ from typing import Iterable, Sequence
 
 from pypdf import PdfReader
 
-from .config import SUPPORTED_EXTENSIONS
+from config import SUPPORTED_EXTENSIONS
 
 try:
     from pptx import Presentation

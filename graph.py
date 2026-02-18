@@ -6,11 +6,11 @@ from typing import Any
 
 from langgraph.graph import END, StateGraph
 
-from .config import SYSTEM_USER_PROMPT
-from .debug import debug_state
-from .file_loaders import is_image_file, iter_input_files, load_source_text
-from .llm_utils import generate_text_with_usage
-from .models import BRDState
+from config import SYSTEM_USER_PROMPT
+from debug import debug_state
+from file_loaders import is_image_file, iter_input_files, load_source_text
+from llm_utils import generate_text_with_usage
+from models import BRDState
 
 try:
     from docx import Document

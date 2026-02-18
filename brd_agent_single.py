@@ -6,19 +6,17 @@ import sys
 
 from dotenv import load_dotenv
 
-# Support direct execution: `python brd_agent_single\brd_agent_single.py`
-if __package__ is None or __package__ == "":
-    _pkg_dir = Path(__file__).resolve().parent
-    _parent = str(_pkg_dir.parent)
-    _pkg_dir_str = str(_pkg_dir)
-    if _pkg_dir_str in sys.path:
-        sys.path.remove(_pkg_dir_str)
-    if _parent not in sys.path:
-        sys.path.insert(0, _parent)
+# Load environment variables FIRST before importing other modules
+load_dotenv()
 
-from brd_agent_single.config import Settings
-from brd_agent_single.graph import build_graph
-from brd_agent_single.models import BRDState
+# Add current directory to path so we can import local modules
+_pkg_dir = Path(__file__).resolve().parent
+if str(_pkg_dir) not in sys.path:
+    sys.path.insert(0, str(_pkg_dir))
+
+from config import Settings
+from graph import build_graph
+from models import BRDState
 
 
 def parse_args() -> argparse.Namespace:
@@ -44,7 +42,6 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    load_dotenv()
     args = parse_args()
 
     graph = build_graph().compile()

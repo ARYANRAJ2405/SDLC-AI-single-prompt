@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 
-from .models import BRDState
+from models import BRDState
 
 
 def debug_state(node_name: str, state: BRDState) -> None:
